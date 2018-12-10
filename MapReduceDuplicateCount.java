@@ -22,6 +22,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.log4j.Logger;
 
 public class MapReduceDuplicateCount {
 	public static void main(String[] args) throws Exception {
@@ -49,18 +50,25 @@ public class MapReduceDuplicateCount {
 	 */
 	public static class DuplicateCountMapper extends Mapper<Object, Text, Text, IntWritable> {
 		private final static IntWritable one = new IntWritable(1);
+		private Logger log = Logger.getLogger(DuplicateCountMapper.class);
+		
 		private Text word = new Text();
 
 		public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
+			log.info("Value: " + value);
 			String text = value.toString();
 			if (text.contains("PostHistoryTypeId=\"10\"") && text.contains("OriginalQuestionIds")) {
 				text = text.split("[\\[\\]]")[1];
 				
+				log.info("Text after first split: " + text);
+				
 				for(String linkId : text.split(",")) {
 					word.set("ID" + linkId.replaceAll("\\s", ""));
+					log.info("Word: " + word);
 					context.write(word, one);
 				}
 			}
+			log.info("=================");
 		}
 	}
 
