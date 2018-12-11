@@ -34,3 +34,6 @@ https://archive.org/details/stackexchange
   - Map: 3.0s
   - Reduce: 3.2s
   - __Total: 6.2s__
+
+# Slides
+[Heres.](https://docs.google.com/presentation/d/1GLqh5cuz208eRSCihCxEpygSumX3abl0HJ2F8DUyY3I/edit?usp=sharing)
