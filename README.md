@@ -5,6 +5,11 @@ https://archive.org/details/stackexchange
 
 # Runtimes 
 
+* __Math (5.2 GB)__
+  - Map: 1358.4s
+  - Reduce: 162.0s
+  - __Total: 1520.4s__
+
 * __Gaming (402 MB)__
   - Map: 54.1s
   - Reduce: 14.4s
